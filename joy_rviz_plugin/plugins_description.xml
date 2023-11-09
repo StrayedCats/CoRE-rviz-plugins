@@ -1,0 +1,5 @@
+<library path="joy_rviz_plugin">
+  <class name="joy_rviz_plugin/JoyPanel" type="joy_rviz_plugin::JoyPanel" base_class_type="rviz_common::Panel">
+    <description>joy panel</description>
+  </class>
+</library>
