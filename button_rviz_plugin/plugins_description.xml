@@ -1,0 +1,5 @@
+<library path="button_rviz_plugin">
+  <class name="button_rviz_plugin/EmptyButton" type="button_rviz_plugin::EmptyButton" base_class_type="rviz_common::Panel">
+    <description>button panel</description>
+  </class>
+</library>
