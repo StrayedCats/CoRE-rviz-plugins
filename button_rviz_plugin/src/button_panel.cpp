@@ -14,13 +14,6 @@
 
 #include "button_panel.hpp"
 
-#include <rviz_common/config.hpp>
-#include <rviz_common/display_context.hpp>
-
-#include <QPainter>
-#include <QMouseEvent>
-#include <QSizePolicy>
-
 namespace button_rviz_plugin
 {
 EmptyButton::EmptyButton(QWidget * parent)
@@ -34,22 +27,13 @@ EmptyButton::EmptyButton(QWidget * parent)
   topic_combo_ = new QComboBox();
   topic_combo_->setEditable(true);
   layout_1st->addWidget(topic_combo_);
-  // layout->addLayout(layout_1st);
 
-  // QHBoxLayout * layout_3rd = new QHBoxLayout;
   a_button_ = new QPushButton("click");
   layout_1st->addWidget(a_button_);
   layout->addLayout(layout_1st);
-
   setLayout(layout);
 
   interval_timer_ = new QTimer(this);
-
-  connect(interval_timer_, &QTimer::timeout, this, &EmptyButton::onTick);
-  connect(enable_check_, &QCheckBox::stateChanged, this, &EmptyButton::onCheckChange);
-  connect(a_button_, &QPushButton::clicked, this, &EmptyButton::onClickA);
-
-  interval_timer_->start(100);
 }
 
 void EmptyButton::onInitialize()
@@ -57,6 +41,12 @@ void EmptyButton::onInitialize()
   button_handler_.setRosNodePtr(
     this->getDisplayContext()->getRosNodeAbstraction().lock()->get_raw_node());
   updateTopicList();
+
+  connect(interval_timer_, &QTimer::timeout, this, &EmptyButton::onTick);
+  connect(enable_check_, &QCheckBox::stateChanged, this, &EmptyButton::onCheckChange);
+  connect(a_button_, &QPushButton::clicked, this, &EmptyButton::onClickA);
+
+  interval_timer_->start(100);
 }
 
 void EmptyButton::onCheckChange(int state)

@@ -14,12 +14,20 @@
 
 #pragma once
 
-#include <QtWidgets>
 #include <QComboBox>
+#include <QMouseEvent>
+#include <QPainter>
+#include <QSizePolicy>
 
+#include <QtWidgets>
+
+// Q_MOC_RUN is defined when this file is processed by moc
 #ifndef Q_MOC_RUN
-#include "button_handler.hpp"
+#include "button_rviz_plugin/button_handler.hpp"
 #include <rviz_common/panel.hpp>
+
+#include <rviz_common/config.hpp>
+#include <rviz_common/display_context.hpp>
 #endif
 
 namespace button_rviz_plugin

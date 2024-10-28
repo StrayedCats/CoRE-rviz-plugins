@@ -5,27 +5,13 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
-find_package(ament_cmake REQUIRED)
-find_package(rviz_common REQUIRED)
-find_package(rviz_rendering REQUIRED)
+find_package(ament_cmake_auto REQUIRED)
+ament_auto_find_build_dependencies()
 
 set(CMAKE_AUTOMOC ON)
 
-add_library(${PROJECT_NAME} SHARED
+ament_auto_add_library(${PROJECT_NAME} SHARED
   src/button_panel.cpp
-)
-ament_target_dependencies(${PROJECT_NAME}
-  rviz_common
-  rviz_rendering
-)
-install(TARGETS
-  ${PROJECT_NAME}
-  EXPORT ${PROJECT_NAME}
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
-  INCLUDES DESTINATION include
 )
 
 pluginlib_export_plugin_description_file(rviz_common plugins_description.xml)
@@ -37,4 +23,4 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-ament_package()
+ament_auto_package()
